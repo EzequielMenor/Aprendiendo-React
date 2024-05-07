@@ -8,7 +8,7 @@ export function useMovies({ search, sort }) {
   const previusSearch = useRef(search);
 
   const getMovies = useMemo(() => {
-    async () => {
+    return async () => {
       if (search === previusSearch.current) return;
 
       try {
@@ -23,7 +23,7 @@ export function useMovies({ search, sort }) {
         setLoading(false);
       }
     };
-  });
+  }, [search]);
 
   // const getSortedMovies = () => {
   //   const sortedMovies = sort
