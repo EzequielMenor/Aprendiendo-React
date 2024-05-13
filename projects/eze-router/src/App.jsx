@@ -3,6 +3,7 @@ import { Router } from './Router'
 import HomePage from './pages/Home'
 import AboutPage from './pages/About'
 import Page404 from './pages/404'
+import SearchPage from './pages/SearchPage'
 
 const appRoutes = [
   {
@@ -12,6 +13,10 @@ const appRoutes = [
   {
     path: '/about',
     Component: AboutPage
+  },
+  {
+    path: '/search/:query',
+    Component: SearchPage
   }
 ]
 
