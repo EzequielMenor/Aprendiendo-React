@@ -5,7 +5,7 @@ import Page404 from './pages/404'
 import SearchPage from './pages/SearchPage'
 
 import { Router } from './Router'
-import { Route } from './route'
+import { Route } from './Route'
 
 const LazyHomePage = lazy(() => import('./pages/Home'))
 const LazyAboutPage = lazy(() => import('./pages/About')) // importe dinámico
