@@ -4,8 +4,9 @@ import './App.css' // importe estatico
 import Page404 from './pages/404'
 import SearchPage from './pages/SearchPage'
 
-import { Router } from './Router'
-import { Route } from './Route'
+import { Route } from './components/Route'
+import { Router } from './components/Router'
+
 
 const LazyHomePage = lazy(() => import('./pages/Home'))
 const LazyAboutPage = lazy(() => import('./pages/About')) // importe dinámico

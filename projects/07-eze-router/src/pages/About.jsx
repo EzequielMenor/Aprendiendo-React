@@ -1,4 +1,4 @@
-import { Link } from '../Link.jsx'
+import { Link } from '../components/Link'
 
 const i18n = {
   es: {
@@ -23,7 +23,7 @@ export default function AboutPage({ routeParams }) {
     <>
       <h1>{i18n.title}</h1>
       <div>
-        <img src="https://avatars.githubusercontent.com/u/69210721?v=4" alt='Foto de Ezequiel' />
+        <img src="https://unavatar.io/deviantart/spyed" alt='Foto de Ezequiel' />
         <p>{i18n.description}</p>
       </div>
       <Link to='/'>{i18n.button}</Link>
