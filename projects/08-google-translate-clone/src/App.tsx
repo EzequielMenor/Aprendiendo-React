@@ -1,19 +1,37 @@
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
+import {Container, Row, Col} from 'react-bootstrap'
+
+import './App.css'
+import {useStore} from './hooks/useStore'
+import {AUTO_LANGUAGE} from './constants'
+
+export default function App() {
+  const {fromLanguage, toLanguage, interchangeLanguages} = useStore()
+
   return (
-    <div className="App">
+    <Container fluid>
       <h1>Google Translate</h1>
-      <button
-        onClick={() => {
-          dispatch({ type: 'SET_FROM_LANGUAGE', payload: 'es' })
-        }}
-      >
-        Cambiar a Español
-      </button>
-    </div>
+
+      <Row>
+        <Col>
+          <h2>From</h2>
+          {fromLanguage}
+        </Col>
+
+        <Col>
+          <button
+            disabled={fromLanguage === AUTO_LANGUAGE}
+            onClick={interchangeLanguages}>
+            intercamiar
+          </button>
+        </Col>
+
+        <Col>
+          <h2>to</h2>
+          {toLanguage}
+        </Col>
+      </Row>
+    </Container>
   )
 }
-
-export default App

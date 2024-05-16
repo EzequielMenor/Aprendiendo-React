@@ -1,9 +1,10 @@
-import { Action, type State } from '../types'
-import { useReducer } from 'react'
+import {AUTO_LANGUAGE} from '../constants'
+import {Action, FromLanguage, Language, type State} from '../types'
+import {useReducer} from 'react'
 
 // 1. Create a initialState
 const initialState: State = {
-  fromLanguege: 'auto',
+  fromLanguage: 'auto',
   toLanguage: 'en',
   fromText: '',
   result: '',
@@ -12,20 +13,24 @@ const initialState: State = {
 
 // 2. Create a reducer
 function reducer(state: State, action: Action) {
-  const { type } = action
+  const {type} = action
 
   if (type === 'INTERCHANGE_LANGUAGES') {
+    // logica del estado dentro del reducer
+    // porque lo evitamos en los componentes
+    if (state.fromLanguage === AUTO_LANGUAGE) return state
+
     return {
       ...state,
-      fromLanguege: state.toLanguage,
-      toLanguage: state.fromLanguege,
+      fromLanguage: state.toLanguage,
+      toLanguage: state.fromLanguage,
     }
   }
 
   if (type === 'SET_FROM_LANGUAGE') {
     return {
       ...state,
-      fromLanguege: action.payload,
+      fromLanguage: action.payload,
     }
   }
 
@@ -58,14 +63,38 @@ function reducer(state: State, action: Action) {
 
 export function useStore() {
   // 3. usar el hook useReducer
-  const [{ fromLanguege, toLanguage, fromText, result, loading }, dispatch] =
+  const [{fromLanguage, toLanguage, fromText, result, loading}, dispatch] =
     useReducer(reducer, initialState)
 
+  const interchangeLanguages = () => {
+    dispatch({type: 'INTERCHANGE_LANGUAGES'})
+  }
+  const setFormLanguage = (payload: FromLanguage) => {
+    dispatch({type: 'SET_FROM_LANGUAGE', payload})
+  }
+
+  const setToLanguage = (payload: Language) => {
+    dispatch({type: 'SET_TO_LANGUAGE', payload})
+  }
+
+  const setFromText = (payload: string) => {
+    dispatch({type: 'SET_FROM_TEXT', payload})
+  }
+
+  const setResult = (payload: string) => {
+    dispatch({type: 'SET_RESULT', payload})
+  }
+
   return {
-    fromLanguege,
+    fromLanguage,
     toLanguage,
     fromText,
     result,
     loading,
+    interchangeLanguages,
+    setFormLanguage,
+    setToLanguage,
+    setFromText,
+    setResult,
   }
 }
