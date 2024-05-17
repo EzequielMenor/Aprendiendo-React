@@ -63,10 +63,8 @@ function reducer(state: State, action: Action) {
 
 export function useStore() {
   // 3. usar el hook useReducer
-  const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] = useReducer(
-    reducer,
-    initialState
-  )
+  const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] =
+    useReducer(reducer, initialState)
 
   const interchangeLanguages = () => {
     dispatch({ type: 'INTERCHANGE_LANGUAGES' })
@@ -100,4 +98,3 @@ export function useStore() {
     setResult,
   }
 }
-
