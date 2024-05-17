@@ -1,6 +1,6 @@
-import {AUTO_LANGUAGE} from '../constants'
-import {Action, FromLanguage, Language, type State} from '../types'
-import {useReducer} from 'react'
+import { AUTO_LANGUAGE } from '../constants'
+import { Action, FromLanguage, Language, type State } from '../types.d'
+import { useReducer } from 'react'
 
 // 1. Create a initialState
 const initialState: State = {
@@ -13,7 +13,7 @@ const initialState: State = {
 
 // 2. Create a reducer
 function reducer(state: State, action: Action) {
-  const {type} = action
+  const { type } = action
 
   if (type === 'INTERCHANGE_LANGUAGES') {
     // logica del estado dentro del reducer
@@ -63,26 +63,28 @@ function reducer(state: State, action: Action) {
 
 export function useStore() {
   // 3. usar el hook useReducer
-  const [{fromLanguage, toLanguage, fromText, result, loading}, dispatch] =
-    useReducer(reducer, initialState)
+  const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] = useReducer(
+    reducer,
+    initialState
+  )
 
   const interchangeLanguages = () => {
-    dispatch({type: 'INTERCHANGE_LANGUAGES'})
+    dispatch({ type: 'INTERCHANGE_LANGUAGES' })
   }
-  const setFormLanguage = (payload: FromLanguage) => {
-    dispatch({type: 'SET_FROM_LANGUAGE', payload})
+  const setFromLanguage = (payload: FromLanguage) => {
+    dispatch({ type: 'SET_FROM_LANGUAGE', payload })
   }
 
   const setToLanguage = (payload: Language) => {
-    dispatch({type: 'SET_TO_LANGUAGE', payload})
+    dispatch({ type: 'SET_TO_LANGUAGE', payload })
   }
 
   const setFromText = (payload: string) => {
-    dispatch({type: 'SET_FROM_TEXT', payload})
+    dispatch({ type: 'SET_FROM_TEXT', payload })
   }
 
   const setResult = (payload: string) => {
-    dispatch({type: 'SET_RESULT', payload})
+    dispatch({ type: 'SET_RESULT', payload })
   }
 
   return {
@@ -92,9 +94,10 @@ export function useStore() {
     result,
     loading,
     interchangeLanguages,
-    setFormLanguage,
+    setFromLanguage,
     setToLanguage,
     setFromText,
     setResult,
   }
 }
+
