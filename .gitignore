@@ -4,3 +4,4 @@ node_modules
 projects/**/.DS_Store
 projects/**/dist
 04-conecta4
+08-google-translate-clone
